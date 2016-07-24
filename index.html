@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Knot</title>
+  <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+  <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+
+</head>
+<body>
+  <a-scene>
+    <!-- cam -->
+    <a-entity id="camera" rotation="0 0 0" position="0 0 5">
+      <a-camera>
+        <a-entity cursor="maxDistance:10000" position="0 0 -1" geometry="primitive:ring; color:pink; radiusInner:.005; radiusOuter:.01"></a-entity>
+      </a-camera>
+    </a-entity>
+    <!-- #knot -->
+    <a-entity id="knot">
+      <a-entity id="knott" geometry="primitive:torusKnot; p:" + pVal + "; q:" + qVal+ ";" material="color:#D5573B"></a-entity>
+    </a-entity>
+    <a-entity>
+      <a-entity id="upP" geometry="primitive:plane" position ="-2.55 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+    </a-entity>
+    <a-entity>
+      <a-entity id="downP" geometry="primitive:plane" position ="-2.55 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+    </a-entity>
+    <a-entity>
+      <a-entity id="upQ" geometry="primitive:plane" position ="2.55 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+    </a-entity>
+    <a-entity>
+      <a-entity id="downQ" geometry="primitive:plane" position ="2.55 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+    </a-entity>
+    <a-sky color="#777DA7"></a-sky>
+    <a-entity class="vals" position="-2.55 2.5 0" material="color:purple" text="text:pVal"></a-entity>
+    <a-entity class="vals" position="2.55 2.5 0"material="color:#F7CAC9" text="text:qVal"></a-entity>
+    <a-entity class="vals" position="-5.55 1 0" material="color:blue" text="text:up"></a-entity>
+    <a-entity class="vals" position="-5.55 -1 0"material="color:green" text="text:down"></a-entity>
+  </a-scene>
+  <script>
+  //mind your p's and q's
+  var pVal = 2;
+  var qVal = 3;
+  $('#upP').on('click', function() {
+    pVal++
+    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + ";");
+  });
+  $('#downP').on('click', function() {
+    pVal--
+    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + ";");
+  });
+  $('#upQ').on('click', function() {
+    qVal++
+    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + ";");
+  });
+  $('#downQ').on('click', function() {
+    qVal--
+    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + ";");
+  });
+  </script>
+</body>
+</html>
