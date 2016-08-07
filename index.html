@@ -6,7 +6,6 @@
   <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
   <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
-
 </head>
 <body>
   <a-scene>
@@ -51,35 +50,49 @@
   var pVal = 2;
   var qVal = 3;
   var radius = 0.2;
+  var rotation = "0 0 0";
+  // updated knot after value knot changes, refactor
+  var refreshKnot = function() {
+    return $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
+  };
+  // updates value text tags after knot changes, refactor
+  var valText = function(target, val) {
+    $(target).attr("text", "text:pVal: " + val);
+  };
+  // updates radius text tags after radius changes, refactor
+  var radiusText = function() {
+    return $('.radiusText').attr("text", "text:radius: " + radius.toFixed(2));
+  };
+  //button actions
   $('#upP').on('click', function() {
     pVal++
-    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
-    $('.pValText').attr("text", "text:pVal: " + pVal);
+    refreshKnot();
+    valText('.pValText', pVal);
   });
   $('#downP').on('click', function() {
     pVal--
-    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
-    $('.pValText').attr("text", "text:pVal: " + pVal);
-
+    refreshKnot();
+    valText('.pValText', pVal);
   });
   $('#upQ').on('click', function() {
     qVal++
-    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
-    $('.qValText').attr("text", "text:qVal: " + qVal);
+    refreshKnot();
+    valText('.qValText', qVal);
   });
   $('#downQ').on('click', function() {
     qVal--
-    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
-    $('.qValText').attr("text", "text:qVal: " + qVal);
+    refreshKnot();
+    valText('.qValText', qVal);
   });
   $('#upRadius').on('click', function() {
-    radius = radius + .02;
-    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
+    radius = radius + .01;
+    refreshKnot();
+    radiusText();
   });
-
   $('#downRadius').on('click', function() {
-    radius = radius - .02;
-    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
+    radius = radius - .01;
+    refreshKnot();
+    radiusText();
   });
   </script>
 </body>
