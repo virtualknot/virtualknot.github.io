@@ -53,6 +53,8 @@
     <a-entity class="vals rotationText" position="5.4 .47 0" material="color:#F7CAC9" scale=".25 .25 .25" rotation="0 0 0" text="text:zup"></a-entity>
     <a-entity class="vals rotationText" position="5.35 -.6 0" material="color:#F7CAC9" scale=".25 .25 .25" rotation="0 0 0" text="text:zdown"></a-entity>
     <a-entity class="vals rotationText" position="5.5 .3 0" material="color:#F7CAC9" scale=".25 .25 .25" rotation="0 0 -90" text="text:rotation"></a-entity>
+    <a-entity class="vals rotationNumber" position="3 1.75 0" material="color:#F7CAC9" scale=".6 .6 .6" rotation="0 0 0" text="text:rotation"></a-entity>
+    <!-- rotation buttons -->
     <a-entity>
       <a-entity id="leftRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="3.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
@@ -81,7 +83,10 @@
   var a = 0;
   var b = 0;
   var c = 0;
-  var rotation = " " + a + " " + b + " " + c + " ";
+  var rotationcleanse = function(type) {
+    return Math.abs(type);
+  }
+  var rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
   // updated knot after value knot changes, refactor
   var refreshKnot = function() {
     $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
@@ -94,6 +99,9 @@
   // updates radius text tags after radius changes, refactor
   var radiusText = function() {
     return $('.radiusText').attr("text", "text:radius: " + radius.toFixed(2));
+  };
+  var rotationNumber = function() {
+    return $('.rotationNumber').attr("text", "text:rotation:" + rotation);
   };
   //Button actions to change p and q values
   $('#upP').on('click', function() {
@@ -130,43 +138,50 @@
   //Button actions to make knot rotate, could refactor passing in the variable we want to change
   $('#leftRotation').on('click', function() {
     b -= 20;
-    rotation = " " + a + " " + b + " " + c + " ";
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
     refreshKnot();
+    rotationNumber();
   });
   $('#rightRotation').on('click', function() {
     b += 20;
-    rotation = " " + a + " " + b + " " + c + " ";
-    refreshKnot();
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";    refreshKnot();
+    rotationNumber();
   });
   $('#upRotation').on('click', function() {
     a -= 20;
-    rotation = " " + a + " " + b + " " + c + " ";
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";    refreshKnot();
     refreshKnot();
+    rotationNumber();
   });
   $('#downRotation').on('click', function() {
     a += 20;
-    rotation = " " + a + " " + b + " " + c + " ";
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";    refreshKnot();
     refreshKnot();
+    rotationNumber();
   });
   $('#upRotation').on('click', function() {
     a -= 20;
-    rotation = " " + a + " " + b + " " + c + " ";
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";    refreshKnot();
     refreshKnot();
+    rotationNumber();
   });
   $('#downRotation').on('click', function() {
     a += 20;
-    rotation = " " + a + " " + b + " " + c + " ";
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";    refreshKnot();
     refreshKnot();
+    rotationNumber();
   });
   $('#zUpRotation').on('click', function() {
     c -= 20;
-    rotation = " " + a + " " + b + " " + c + " ";
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";    refreshKnot();
     refreshKnot();
+    rotationNumber();
   });
   $('#zDownRotation').on('click', function() {
     c += 20;
-    rotation = " " + a + " " + b + " " + c + " ";
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";    refreshKnot();
     refreshKnot();
+    rotationNumber();
   });
   </script>
 </body>
