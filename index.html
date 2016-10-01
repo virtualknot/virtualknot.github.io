@@ -17,8 +17,24 @@
     </a-entity>
     <!-- #knot -->
     <a-entity id="knot">
-      <a-entity id="knott" geometry="primitive:torusKnot; p:" + pVal + "; q:" + qVal+ ";" rotation="0 0 0" material="color:#D5573B"></a-entity>
+      <a-entity id="knott" geometry="primitive:torusKnot; p:" + pVal + "; q:" + qVal+ ";" position="0 0 0" rotation="0 0 0" material="color:#D5573B"></a-entity>
     </a-entity>
+    <!-- up and down movement buttons -->
+    <a-entity>
+      <a-entity id="upKnot" geometry="primitive:plane" scale=".7 .7 .7" position ="-5.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+    </a-entity>
+    <a-entity>
+      <a-entity id="downKnot" geometry="primitive:plane" scale=".7 .7 .7" position ="-5.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+    </a-entity>
+    <a-entity class="colortext" position="-6 0 0" material="color:blue" scale=".4 .4 .4" text="text:Elevator"></a-entity>
+    <!-- color buttons -->
+    <a-entity>
+      <a-entity id="upColor" geometry="primitive:plane" scale=".7 .7 .7" position ="-4.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+    </a-entity>
+    <a-entity>
+      <a-entity id="downColor" geometry="primitive:plane" scale=".7 .7 .7" position ="-4.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+    </a-entity>
+    <a-entity class="colortext" position="-4.75 0 0" material="color:blue" scale=".4 .4 .4" text="text:Color"></a-entity>
     <!-- knot p and q val buttons -->
     <a-entity>
       <a-entity id="upP" geometry="primitive:plane" scale=".7 .7 .7" position ="-3.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
@@ -90,18 +106,40 @@
   var a = 0;
   var b = 0;
   var c = 0;
+  // colors array and function
+  var colors = ['white' ,'black', 'silver', '#F16785', 'plum', 'wheat', 'tomato', '#c5d5cb', '#9fa8a3', '#e3e0cf', '#edd9c0', '#e62739','#fae596', '#7d4627', '#b56969', '#22264b', '#e6cf8b', '#98dafc'];
+  // adds the proper attribute for color
+  var readyColors = colors.map(function(color) {
+    return 'color:' + color;
+  });
+  //previous colors array
+  var previousColors = [];
+  var position;
+  var knotMover = function(position, direction) {
+    var positions = position.split(" ");
+    var y = Math.abs(positions[1]);
+    var newNum = y + 10;
+    return positions[0] + y + positions[2];
+  };
+  //color randomizer
+  var colorChanger = function(colorArray) {
+    var colorIndex = Math.floor(Math.random() * colorArray.length);
+    return colorArray[colorIndex];
+  };
+  // Rotation function and string
   var rotationcleanse = function(type) {
     return Math.abs(type);
-  }
+  };
   var rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
   // updated knot after value knot changes, refactor
   var refreshKnot = function() {
     $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
+    $('knott').attr("position", position);
     $('#knott').attr("rotation", rotation);
   };
   // updates value text tags after knot changes, refactor
-  var valText = function(target, val) {
-    $(target).attr("text", "text:pVal: " + val);
+  var valText = function(target, val, letter) {
+    $(target).attr("text", "text:" + letter + "Val:" + val);
   };
   // updates radius text tags after radius changes, refactor
   var radiusText = function() {
@@ -110,26 +148,36 @@
   var rotationNumber = function() {
     return $('.rotationNumber').attr("text", "text:rotation:" + rotation);
   };
+  var knotElevator = function(direction) {
+    var knotty = document.getElementById('knott')
+    var currentPosition = knotty.getAttribute('position');
+    var newY = currentPosition.y += direction;
+    position = " " + currentPosition.x + " " + newY + " " + currentPosition.z + " ";
+    $('#knott').attr('position', position);
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
+    refreshKnot();
+    rotationNumber();
+  }
   //Button actions to change p and q values
   $('#upP').on('click', function() {
     pVal++
     refreshKnot();
-    valText('.pValText', pVal);
+    valText('.pValText', pVal, 'p');
   });
   $('#downP').on('click', function() {
     pVal--
     refreshKnot();
-    valText('.pValText', pVal);
+    valText('.pValText', pVal, 'p');
   });
   $('#upQ').on('click', function() {
     qVal++
     refreshKnot();
-    valText('.qValText', qVal);
+    valText('.qValText', qVal, 'q');
   });
   $('#downQ').on('click', function() {
     qVal--
     refreshKnot();
-    valText('.qValText', qVal);
+    valText('.qValText', qVal, 'q');
   });
   //Button actions to change radius of knot
   $('#upRadius').on('click', function() {
@@ -191,6 +239,34 @@
     refreshKnot();
     rotationNumber();
   });
+  // change color actions
+  //up randomizes the color and places those in the colors stack
+  $('#upColor').on('click', function() {
+    var knotEl = document.getElementById('knott');
+    var curColor = knotEl.getAttribute('material');
+    previousColors.push(curColor.color);
+    var newColor = colorChanger(readyColors);
+    $('#knott').attr('material', newColor);
+    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
+    refreshKnot();
+    rotationNumber();
+  });
+  // down pops off colors stack and go to the previous color
+  $('#downColor').on('click', function() {
+    if(previousColors.length) {
+      var newColor = previousColors.pop();
+      $('#knott').attr('material', 'color:' + newColor);
+      rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
+      refreshKnot();
+      rotationNumber();
+    }
+  });
+  $('#upKnot').on('click', function() {
+    knotElevator(1);
+  });
+  $('#downKnot').on('click', function() {
+    knotElevator(-1)
+  });
   </script>
 </body>
-</html>
+</html> 
