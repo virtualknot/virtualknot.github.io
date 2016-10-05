@@ -96,6 +96,9 @@
     <a-entity>
       <a-entity id="zDownRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="5.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
+    <a-entity>
+      <a-entity id="off" geometry="primitive:plane" scale=".7 .7 .7" position ="0 2.5 0" material="color:grey"</a-entity>
+    </a-entity>
     <a-sky color="#777DA7"></a-sky>
   </a-scene>
   <script>
@@ -261,12 +264,18 @@
       rotationNumber();
     }
   });
+  //moves the knot up and down through the knotElevator function
   $('#upKnot').on('click', function() {
     knotElevator(1);
   });
   $('#downKnot').on('click', function() {
     knotElevator(-1)
   });
+  $('#off').on('click', function() {
+    console.log('in off')
+    event.preventDefault();
+    $('#upKnot').attr('material', 'color:#777DA7');
+  })
   </script>
 </body>
-</html> 
+</html>
