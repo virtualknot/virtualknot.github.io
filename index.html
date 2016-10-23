@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Create Your Own Knot</title>
+  <title>VirtualKnot</title>
   <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
   <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+  <script src="knot.js"></script>
 </head>
 <body>
   <a-scene>
     <!-- cam -->
     <a-entity id="camera" rotation="0 0 0" position="0 0 5">
       <a-camera>
-        <a-entity cursor="maxDistance:10000" position="0 0 -1" geometry="primitive:ring; color:pink; radiusInner:.005; radiusOuter:.01"></a-entity>
+        <a-entity cursor="maxDistance:10000" position="0 0 -1" material="color:pink" geometry="primitive:ring; radiusInner:.005; radiusOuter:.01"></a-entity>
       </a-camera>
     </a-entity>
     <!-- #knot -->
@@ -21,43 +22,43 @@
     </a-entity>
     <!-- up and down movement buttons -->
     <a-entity>
-      <a-entity class="switchColor" id="upKnot" geometry="primitive:plane" scale=".7 .7 .7" position ="-5.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+      <a-entity class="switchTag" id="upKnot" geometry="primitive:plane" scale=".7 .7 .7" position ="-5.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="downKnot" geometry="primitive:plane" scale=".7 .7 .7" position ="-5.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+      <a-entity class="switchTag" id="downKnot" geometry="primitive:plane" scale=".7 .7 .7" position ="-5.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
-    <a-entity class="colortext switchColor" position="-6 0 0" material="color:blue" scale=".4 .4 .4" text="text:Elevator"></a-entity>
+    <a-entity class="colortext switchColor" position="-6 0 0" material="color:#F7CAC9" scale=".4 .4 .4" text="text:Elevator"></a-entity>
     <!-- color buttons -->
     <a-entity>
-      <a-entity class="switchColor" id="upColor" geometry="primitive:plane" scale=".7 .7 .7" position ="-4.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+      <a-entity class="switchTag" id="upColor" geometry="primitive:plane" scale=".7 .7 .7" position ="-4.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="downColor" geometry="primitive:plane" scale=".7 .7 .7" position ="-4.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+      <a-entity class="switchTag" id="downColor" geometry="primitive:plane" scale=".7 .7 .7" position ="-4.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
-    <a-entity class="colortext switchColor" position="-4.75 0 0" material="color:blue" scale=".4 .4 .4" text="text:Color"></a-entity>
+    <a-entity class="colortext switchColor" position="-4.75 0 0" material="color:#F7CAC9" scale=".4 .4 .4" text="text:Color"></a-entity>
     <!-- knot p and q val buttons -->
     <a-entity>
-      <a-entity class="switchColor" id="upP" geometry="primitive:plane" scale=".7 .7 .7" position ="-3.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+      <a-entity class="switchTag" id="upP" geometry="primitive:plane" scale=".7 .7 .7" position ="-3.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="downP" geometry="primitive:plane" scale=".7 .7 .7" position ="-3.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+      <a-entity class="switchTag" id="downP" geometry="primitive:plane" scale=".7 .7 .7" position ="-3.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="upQ" geometry="primitive:plane" scale=".7 .7 .7" position ="-2.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+      <a-entity class="switchTag" id="upQ" geometry="primitive:plane" scale=".7 .7 .7" position ="-2.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="downQ" geometry="primitive:plane" scale=".7 .7 .7" position ="-2.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+      <a-entity class="switchTag" id="downQ" geometry="primitive:plane" scale=".7 .7 .7" position ="-2.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
     <!-- to have button descriptions for the knot's p and q value -->
-    <a-entity class="vals pValText switchColor" position="-3.75 0 0" material="color:purple" scale=".4 .4 .4" text="text:pVal"></a-entity>
+    <a-entity class="vals pValText switchColor" position="-3.75 0 0" material="color:#F7CAC9" scale=".4 .4 .4" text="text:pVal"></a-entity>
     <a-entity class="vals qValText switchColor" position="-2.75 0 0" material="color:#F7CAC9" scale=".4 .4 .4" text="text:qVal"></a-entity>
     <!-- radius button and descriptions -->
     <a-entity class="vals radiusText switchColor" position="2.15 0 0" material="color:#F7CAC9" scale=".3 .3 .3" text="text:radius"></a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="upRadius" geometry="primitive:plane" scale=".7 .7 .7" position ="2.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+      <a-entity class="switchTag switchUp" id="upRadius" geometry="primitive:plane" scale=".7 .7 .7" position ="2.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="downRadius" geometry="primitive:plane" scale=".7 .7 .7" position ="2.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+      <a-entity class="switchTag switchDown" id="downRadius" geometry="primitive:plane" scale=".7 .7 .7" position ="2.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
     <!-- rotation buttons and description -->
     <!-- up and down rotation tags -->
@@ -77,205 +78,32 @@
     <!-- rotation buttons -->
     <!-- up and down rotation -->
     <a-entity>
-      <a-entity class="switchColor" id="upRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="3.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+      <a-entity class="switchTag switchUp" id="upRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="3.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="downRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="3.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+      <a-entity class="switchTag switchDown" id="downRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="3.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
     <!-- left and right rotation -->
     <a-entity>
-      <a-entity class="switchColor" id="leftRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="4.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+      <a-entity class="switchTag switchUp" id="leftRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="4.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="rightRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="4.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+      <a-entity class="switchTag switchDown" id="rightRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="4.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
     <!-- z rotations -->
     <a-entity>
-      <a-entity class="switchColor" id="zUpRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="5.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
+      <a-entity class="switchTag switchUp" id="zUpRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="5.5 1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="zDownRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="5.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
+      <a-entity class="switchTag switchDown" id="zDownRotation" geometry="primitive:plane" scale=".7 .7 .7" position ="5.5 -1 0" material="src:url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png)"</a-entity>
     </a-entity>
     <a-entity>
-      <a-entity class="switchColor" id="off" geometry="primitive:plane" scale=".7 .7 .7" position ="0 2.5 0" material="src:url(https://cdn0.iconfinder.com/data/icons/rcons-basic/16/lightbulb-512.png)"</a-entity>
+      <a-entity class="switchTag switchUp" id="dim" geometry="primitive:plane" scale=".7 .7 .7" position ="-.5 2.5 0" material="src:url(https://cdn0.iconfinder.com/data/icons/rcons-basic/16/lightbulb-512.png)"</a-entity>
+    </a-entity>
+    <a-entity>
+      <a-entity class="switchTag" id="lit" geometry="primitive:plane" scale=".7 .7 .7" position =".5 2.5 0" material="src:url(https://cdn2.iconfinder.com/data/icons/social-messaging-productivity-1/128/refresh-512.png)"</a-entity>
     </a-entity>
     <a-sky color="#777DA7"></a-sky>
   </a-scene>
-  <script>
-  //mind your p's and q's
-  var pVal = 2;
-  var qVal = 3;
-  var radius = 0.2;
-  var a = 0;
-  var b = 0;
-  var c = 0;
-  // colors array and function
-  var colors = ['white' ,'black', 'silver', '#F16785', 'plum', 'wheat', 'tomato', '#c5d5cb', '#9fa8a3', '#e3e0cf', '#edd9c0', '#e62739','#fae596', '#7d4627', '#b56969', '#22264b', '#e6cf8b', '#98dafc'];
-  // adds the proper attribute for color
-  var readyColors = colors.map(function(color) {
-    return 'color:' + color;
-  });
-  //previous colors array
-  var previousColors = [];
-  var position;
-  var knotMover = function(position, direction) {
-    var positions = position.split(" ");
-    var y = Math.abs(positions[1]);
-    var newNum = y + 10;
-    return positions[0] + y + positions[2];
-  };
-  //color randomizer
-  var colorChanger = function(colorArray) {
-    var colorIndex = Math.floor(Math.random() * colorArray.length);
-    return colorArray[colorIndex];
-  };
-  // Rotation function and string
-  var rotationcleanse = function(type) {
-    return Math.abs(type);
-  };
-  var rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-  // updated knot after value knot changes, refactor
-  var refreshKnot = function() {
-    $('#knott').attr("geometry", "primitive:torusKnot; p:" + pVal + "; q:" + qVal + "; radiusTubular:" + radius +";");
-    $('knott').attr("position", position);
-    $('#knott').attr("rotation", rotation);
-  };
-  // updates value text tags after knot changes, refactor
-  var valText = function(target, val, letter) {
-    $(target).attr("text", "text:" + letter + "Val:" + val);
-  };
-  // updates radius text tags after radius changes, refactor
-  var radiusText = function() {
-    return $('.radiusText').attr("text", "text:radius: " + radius.toFixed(2));
-  };
-  var rotationNumber = function() {
-    return $('.rotationNumber').attr("text", "text:rotation:" + rotation);
-  };
-  var knotElevator = function(direction) {
-    var knotty = document.getElementById('knott')
-    var currentPosition = knotty.getAttribute('position');
-    var newY = currentPosition.y += direction;
-    position = " " + currentPosition.x + " " + newY + " " + currentPosition.z + " ";
-    $('#knott').attr('position', position);
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  }
-  //Button actions to change p and q values
-  $('#upP').on('click', function() {
-    pVal++
-    refreshKnot();
-    valText('.pValText', pVal, 'p');
-  });
-  $('#downP').on('click', function() {
-    pVal--
-    refreshKnot();
-    valText('.pValText', pVal, 'p');
-  });
-  $('#upQ').on('click', function() {
-    qVal++
-    refreshKnot();
-    valText('.qValText', qVal, 'q');
-  });
-  $('#downQ').on('click', function() {
-    qVal--
-    refreshKnot();
-    valText('.qValText', qVal, 'q');
-  });
-  //Button actions to change radius of knot
-  $('#upRadius').on('click', function() {
-    radius = radius + .01;
-    refreshKnot();
-    radiusText();
-  });
-  $('#downRadius').on('click', function() {
-    radius = radius - .01;
-    refreshKnot();
-    radiusText();
-  });
-  //Button actions to make knot rotate, could refactor passing in the variable we want to change
-  $('#leftRotation').on('click', function() {
-    b -= 20;
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  $('#rightRotation').on('click', function() {
-    b += 20;
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  $('#upRotation').on('click', function() {
-    a -= 20;
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  $('#downRotation').on('click', function() {
-    a += 20;
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  $('#upRotation').on('click', function() {
-    a -= 20;
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  $('#downRotation').on('click', function() {
-    a += 20;
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  $('#zUpRotation').on('click', function() {
-    c -= 20;
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  $('#zDownRotation').on('click', function() {
-    c += 20;
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  // change color actions
-  //up randomizes the color and places those in the colors stack
-  $('#upColor').on('click', function() {
-    var knotEl = document.getElementById('knott');
-    var curColor = knotEl.getAttribute('material');
-    previousColors.push(curColor.color);
-    var newColor = colorChanger(readyColors);
-    $('#knott').attr('material', newColor);
-    rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-    refreshKnot();
-    rotationNumber();
-  });
-  // down pops off colors stack and go to the previous color
-  $('#downColor').on('click', function() {
-    if(previousColors.length) {
-      var newColor = previousColors.pop();
-      $('#knott').attr('material', 'color:' + newColor);
-      rotation = " " + rotationcleanse(a) + " " + rotationcleanse(b) + " " + rotationcleanse(c) + " ";
-      refreshKnot();
-      rotationNumber();
-    }
-  });
-  //moves the knot up and down through the knotElevator function
-  $('#upKnot').on('click', function() {
-    knotElevator(1);
-  });
-  $('#downKnot').on('click', function() {
-    knotElevator(-1)
-  });
-  $('#off').on('click', function() {
-    $('#upKnot').attr('material', 'color:#777DA7');
-    $('#downKnot').attr('material', 'color:#777DA7');
-    $('.switchColor').attr('material', 'color:#777DA7');
-  })
-  </script>
 </body>
 </html>
